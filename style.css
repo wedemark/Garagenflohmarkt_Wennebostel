@@ -24,9 +24,16 @@ header {
 }
 
 nav {
-    background-color: rgba(68, 68, 68, 0.9); /* Und die Navigation auch */
+    background-color: rgba(68, 68, 68, 0.9); /* Deine bestehende Hintergrundfarbe mit Transparenz */
     padding: 0.8rem 0;
     text-align: center;
+
+    /* NEU FÜR STICKY MENÜ */
+    position: sticky; /* Das Element wird "sticky" */
+    top: 0;           /* Es bleibt 0 Pixel vom oberen Rand kleben */
+    width: 100%;      /* Stellt sicher, dass es die volle Breite behält */
+    z-index: 1000;    /* Sorgt dafür, dass es über anderen Inhalten liegt */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2); /* Optional: Ein leichter Schatten für bessere Sichtbarkeit */
 }
 
 main {
