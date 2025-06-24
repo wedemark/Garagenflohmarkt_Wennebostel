@@ -3,62 +3,62 @@ body {
     line-height: 1.6;
     margin: 0;
     padding: 0;
-    background-color: #f4f4f4;
+    background-color: #f4f4f4; /* Eine Fallback-Farbe, falls das Bild nicht lädt */
     color: #333;
-    background-image: url('garagenflohmarkt_background.png'); /* Diese URL muss hier stehen! */
-    background-size: cover; /* Sorgt dafür, dass das Bild den gesamten Hintergrund abdeckt */
-    background-position: center; /* Zentriert das Bild */
-    background-repeat: no-repeat; /* Verhindert, dass sich das Bild wiederholt */
+
+    background-image: url('garagenflohmarkt_background.png'); /* Dein hochgeladenes Bild */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed; /* Hält das Bild beim Scrollen fest (optional, kann aber helfen) */
+
+    min-height: 100vh; /* Stellt sicher, dass der Body immer mindestens die Höhe des Viewports hat */
 }
 
+/* Eventuell bestehende Hintergrundfarben der Abschnitte anpassen */
 header {
-    background-color: #333;
+    background-color: rgba(51, 51, 51, 0.8); /* Machen wir etwas transparenter */
     color: #fff;
     padding: 1rem 0;
     text-align: center;
 }
 
-header h1 {
-    margin: 0;
-    font-size: 2.5rem;
-}
-
-header p {
-    margin: 0;
-    font-size: 1.1rem;
-}
-
-/* Menü-Styling */
 nav {
-    background-color: #444;
+    background-color: rgba(68, 68, 68, 0.9); /* Und die Navigation auch */
     padding: 0.8rem 0;
     text-align: center;
 }
 
-nav ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex; /* Für horizontale Anordnung */
-    justify-content: center; /* Zentriert die Menüpunkte */
-    flex-wrap: wrap; /* Menüpunkte brechen um, wenn der Bildschirm zu klein ist */
+main {
+    padding: 20px;
+    max-width: 900px;
+    margin: 20px auto;
+    background-color: rgba(255, 255, 255, 0.9); /* Hauptinhalt mit leichter Transparenz */
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
-nav ul li {
-    margin: 0 15px;
+
+/* Media Query für kleine Bildschirme (Smartphones) */
+@media (max-width: 768px) {
+    body {
+        /*
+        Optional: Wenn das Bild auf Smartphones immer noch Probleme macht oder die Ladezeit zu hoch ist,
+        könntest du hier das Hintergrundbild komplett deaktivieren oder ein kleineres Bild nutzen.
+        background-image: none;
+        */
+        background-attachment: scroll; /* Auf Mobilgeräten kann 'fixed' Probleme machen, daher auf 'scroll' stellen */
+    }
+
+    nav ul {
+        flex-direction: column; /* Menüpunkte untereinander statt nebeneinander */
+    }
+
+    nav ul li {
+        margin: 5px 0; /* Vertikaler Abstand zwischen den Menüpunkten */
+    }
 }
 
-nav ul li a {
-    color: #fff;
-    text-decoration: none;
-    font-weight: bold;
-    padding: 5px 0;
-    transition: color 0.3s ease; /* Sanfter Übergang beim Hover */
-}
-
-nav ul li a:hover {
-    color: #ffd700; /* Goldgelb beim Hover */
-}
 
 /* Inhalte der Sektionen */
 main {
