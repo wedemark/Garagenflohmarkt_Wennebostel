@@ -22,7 +22,7 @@ body {
 
 /* --- Navigation (Mobile: Sticky oben) --- */
 nav {
-    background-color: rgba(68, 68, 68, 0.9);
+    background-color: rgba(68, 68, 68, 0.5);
     padding: 0.8rem 0;
     text-align: center;
 
