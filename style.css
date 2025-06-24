@@ -1,90 +1,112 @@
+/* Grundlegende Body-Stile - ACHTUNG: Keine fixed background-attachment hier! */
 body {
     font-family: Arial, sans-serif;
     line-height: 1.6;
     margin: 0;
     padding: 0;
-    background-color: #f4f4f4; /* Eine Fallback-Farbe, falls das Bild nicht lädt */
+    background-color: #f4f4f4; /* Fallback-Farbe */
     color: #333;
-
+    min-height: 100vh; /* Mindesthöhe für den Body */
+    /* background-image-Regeln für body hier weglassen, wir machen das später in einer Media Query */
+    /* Oder wenn du das Bild immer haben willst, behalte es hier, aber ohne fixed für mobile */
     background-image: url('garagenflohmarkt_background.png'); /* Dein hochgeladenes Bild */
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    background-attachment: fixed; /* Hält das Bild beim Scrollen fest (optional, kann aber helfen) */
-
-    min-height: 100vh; /* Stellt sicher, dass der Body immer mindestens die Höhe des Viewports hat */
+    background-attachment: scroll; /* Wichtig: Scroll, nicht fixed, für bessere Kompatibilität */
 }
 
-/* Eventuell bestehende Hintergrundfarben der Abschnitte anpassen */
+/* Haupt-Layout mit Flexbox für Side-by-Side */
+#container {
+    display: flex; /* Aktiviert Flexbox für nebeneinanderliegende Elemente */
+    min-height: 100vh; /* Der Container soll mindestens die Bildschirmhöhe einnehmen */
+}
+
+/* Navigationsleiste links */
+nav {
+    width: 200px; /* Breite der Navigationsleiste */
+    background-color: rgba(68, 68, 68, 0.9); /* Deine bestehende Hintergrundfarbe mit Transparenz */
+    padding: 20px; /* Innenabstand für die Links */
+    box-shadow: 2px 0 5px rgba(0,0,0,0.2); /* Schatten nach rechts */
+    position: fixed; /* Hält die Navigation am linken Rand fest */
+    height: 100vh; /* Nimmt die volle Höhe des Viewports ein */
+    overflow-y: auto; /* Erlaubt das Scrollen, falls es viele Menüpunkte gibt */
+    z-index: 1000; /* Sorgt dafür, dass es über anderen Inhalten liegt */
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+nav ul li {
+    margin-bottom: 15px; /* Abstand zwischen Menüpunkten */
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 10px 0; /* Mehr Padding für Klickbereich */
+    display: block; /* Macht den Link-Bereich anklickbar */
+    transition: color 0.3s ease;
+}
+
+nav ul li a:hover {
+    color: #ffd700;
+}
+
+/* Hauptinhalt-Bereich */
+#content {
+    margin-left: 200px; /* Platz für die Navigation lassen (muss der Breite von nav entsprechen!) */
+    flex-grow: 1; /* Nimmt den restlichen verfügbaren Platz ein */
+    padding: 20px; /* Innenabstand zum Rand des Containers */
+    max-width: calc(100% - 220px); /* Max-Breite anpassen (Gesamtbreite - nav-Breite - padding) */
+    background-color: rgba(255, 255, 255, 0.9); /* Hauptinhalt mit leichter Transparenz */
+    border-radius: 8px; /* Optional, wenn #content einen eigenen Hintergrund hat */
+    box-shadow: 0 0 10px rgba(0,0,0,0.1); /* Optionaler Schatten für den Inhaltsbereich */
+}
+
+/* Header-Stile - bleiben meist gleich */
 header {
-    background-color: rgba(51, 51, 51, 0.8); /* Machen wir etwas transparenter */
+    background-color: rgba(51, 51, 51, 0.8);
     color: #fff;
     padding: 1rem 0;
     text-align: center;
+    margin-bottom: 20px; /* Abstand zum Main-Inhalt */
+    border-radius: 8px; /* Wenn #content abgerundet ist */
 }
 
-nav {
-    background-color: rgba(68, 68, 68, 0.9); /* Deine bestehende Hintergrundfarbe mit Transparenz */
-    padding: 0.8rem 0;
-    text-align: center;
-
-    /* NEU FÜR STICKY MENÜ */
-    position: sticky; /* Das Element wird "sticky" */
-    top: 0;           /* Es bleibt 0 Pixel vom oberen Rand kleben */
-    width: 100%;      /* Stellt sicher, dass es die volle Breite behält */
-    z-index: 1000;    /* Sorgt dafür, dass es über anderen Inhalten liegt */
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2); /* Optional: Ein leichter Schatten für bessere Sichtbarkeit */
+header h1 {
+    margin: 0;
+    font-size: 2.5rem;
 }
 
+header p {
+    margin: 0;
+    font-size: 1.1rem;
+}
+
+/* Bestehende Main- und Section-Stile (Anpassungen für das neue Layout) */
 main {
-    padding: 20px;
-    max-width: 900px;
-    margin: 20px auto;
-    background-color: rgba(255, 255, 255, 0.9); /* Hauptinhalt mit leichter Transparenz */
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
-
-
-/* Media Query für kleine Bildschirme (Smartphones) */
-@media (max-width: 768px) {
-    body {
-        /*
-        Optional: Wenn das Bild auf Smartphones immer noch Probleme macht oder die Ladezeit zu hoch ist,
-        könntest du hier das Hintergrundbild komplett deaktivieren oder ein kleineres Bild nutzen.
-        background-image: none;
-        */
-        background-attachment: scroll; /* Auf Mobilgeräten kann 'fixed' Probleme machen, daher auf 'scroll' stellen */
-    }
-
-    nav ul {
-        flex-direction: column; /* Menüpunkte untereinander statt nebeneinander */
-    }
-
-    nav ul li {
-        margin: 5px 0; /* Vertikaler Abstand zwischen den Menüpunkten */
-    }
-}
-
-
-/* Inhalte der Sektionen */
-main {
-    padding: 20px;
-    max-width: 900px;
-    margin: 20px auto;
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    /* Keine background-color hier, da #content schon eine hat */
+    padding: 0; /* Padding wird jetzt von #content gesteuert */
+    max-width: 100%; /* Da #content die Breite steuert */
+    margin: 0; /* Margin wird jetzt von #content gesteuert */
 }
 
 section {
-    padding: 20px 0;
+    padding: 20px; /* Innenabstand für jede Sektion */
     border-bottom: 1px solid #eee;
     margin-bottom: 20px;
+    background-color: #fff; /* Jede Sektion kann hier einen eigenen weißen Hintergrund haben, oder entfernen, wenn #content genug ist */
+    border-radius: 5px; /* Optional */
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05); /* Optional */
 }
 
 section:last-child {
-    border-bottom: none; /* Letzter Abschnitt hat keine Linie unten */
+    border-bottom: none;
     margin-bottom: 0;
 }
 
@@ -96,7 +118,7 @@ section h2 {
 }
 
 section ul {
-    list-style: inside square; /* Oder 'circle', 'disc' etc. */
+    list-style: inside square;
     padding-left: 20px;
 }
 
@@ -105,10 +127,58 @@ section p, section ul li {
     line-height: 1.8;
 }
 
+/* Footer-Stile - jetzt innerhalb von #content */
 footer {
     text-align: center;
     padding: 20px;
-    background-color: #333;
+    background-color: rgba(51, 51, 51, 0.8); /* Mit Transparenz */
     color: #fff;
     margin-top: 30px;
+    border-radius: 8px; /* Wenn #content abgerundet ist */
+}
+
+/* Media Query für kleine Bildschirme (Smartphones/Tablets) */
+@media (max-width: 768px) {
+    #container {
+        flex-direction: column; /* Elemente untereinander statt nebeneinander */
+    }
+
+    nav {
+        position: static; /* Navigation ist wieder statisch (nicht fest) */
+        width: 100%; /* Nimmt volle Breite ein */
+        height: auto; /* Höhe passt sich an Inhalt an */
+        padding: 10px 0; /* Weniger Padding */
+        box-shadow: 0 2px 5px rgba(0,0,0,0.2); /* Schatten unten */
+    }
+
+    nav ul {
+        flex-direction: column; /* Menüpunkte untereinander */
+        text-align: center; /* Text zentrieren */
+    }
+
+    nav ul li {
+        margin: 5px 0;
+    }
+
+    #content {
+        margin-left: 0; /* Kein Margin mehr links */
+        padding: 10px; /* Weniger Padding für den Inhalt */
+        max-width: 100%; /* Nimmt volle Breite ein */
+    }
+
+    header {
+        padding: 0.8rem 0;
+    }
+
+    header h1 {
+        font-size: 1.8rem;
+    }
+}
+
+/* Optional: Hintergrundbild nur für größere Bildschirme (Desktop, Tablets) */
+/* Dies überschreibt das background-image vom body für größere Bildschirme und macht es fixed */
+@media (min-width: 769px) {
+    body {
+        background-attachment: fixed; /* Für Desktop kann 'fixed' gut aussehen */
+    }
 }
