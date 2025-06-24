@@ -90,10 +90,12 @@ header p {
 
 /* Bestehende Main- und Section-Stile (Anpassungen für das neue Layout) */
 main {
-    /* Keine background-color hier, da #content schon eine hat */
-    padding: 0; /* Padding wird jetzt von #content gesteuert */
-    max-width: 100%; /* Da #content die Breite steuert */
-    margin: 0; /* Margin wird jetzt von #content gesteuert */
+    padding: 20px; /* Innenabstand um den Inhalt herum */
+    max-width: 900px; /* Hier legst du die maximale Breite fest */
+    margin: 20px auto; /* Zentriert den Block horizontal und gibt etwas vertikalen Abstand */
+    background-color: rgba(255, 255, 255, 0.9); /* Hauptinhalt mit leichter Transparenz */
+    border-radius: 8px; /* Optional: abgerundete Ecken */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Optional: leichter Schatten */
 }
 
 section {
