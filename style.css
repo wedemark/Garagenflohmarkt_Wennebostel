@@ -1,55 +1,58 @@
-/* Grundlegende Body-Stile - ACHTUNG: Keine fixed background-attachment hier! */
+/* --- Globale Einstellungen & Body --- */
+html, body {
+    margin: 0;
+    padding: 0;
+    /* height: 100%; <- Diese Zeile bitte nicht verwenden, da sie sticky stören kann */
+}
+
 body {
     font-family: Arial, sans-serif;
     line-height: 1.6;
-    margin: 0;
-    padding: 0;
     background-color: #f4f4f4; /* Fallback-Farbe */
     color: #333;
     min-height: 100vh; /* Mindesthöhe für den Body */
-    /* background-image-Regeln für body hier weglassen, wir machen das später in einer Media Query */
-    /* Oder wenn du das Bild immer haben willst, behalte es hier, aber ohne fixed für mobile */
+
+    /* Hintergrundbild-Regeln - Standardmäßig für alle, aber Attachment gesteuert */
     background-image: url('garagenflohmarkt_background.png'); /* Dein hochgeladenes Bild */
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    background-attachment: scroll; /* Wichtig: Scroll, nicht fixed, für bessere Kompatibilität */
+    background-attachment: scroll; /* Standard: Bild scrollt mit */
 }
 
-/* Haupt-Layout mit Flexbox für Side-by-Side */
-#container {
-    display: flex; /* Aktiviert Flexbox für nebeneinanderliegende Elemente */
-    min-height: 100vh; /* Der Container soll mindestens die Bildschirmhöhe einnehmen */
-}
-
-/* Navigationsleiste links */
+/* --- Navigation (Mobile: Sticky oben) --- */
 nav {
-    width: 200px; /* Breite der Navigationsleiste */
-    background-color: rgba(68, 68, 68, 0.9); /* Deine bestehende Hintergrundfarbe mit Transparenz */
-    padding: 20px; /* Innenabstand für die Links */
-    box-shadow: 2px 0 5px rgba(0,0,0,0.2); /* Schatten nach rechts */
-    position: fixed; /* Hält die Navigation am linken Rand fest */
-    height: 100vh; /* Nimmt die volle Höhe des Viewports ein */
-    overflow-y: auto; /* Erlaubt das Scrollen, falls es viele Menüpunkte gibt */
-    z-index: 1000; /* Sorgt dafür, dass es über anderen Inhalten liegt */
+    background-color: rgba(68, 68, 68, 0.9);
+    padding: 0.8rem 0;
+    text-align: center;
+
+    /* Für Sticky Menü (Mobile) */
+    position: sticky;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
 }
 
 nav ul {
     list-style: none;
     padding: 0;
     margin: 0;
+    display: flex; /* Menüpunkte nebeneinander auf Mobile */
+    justify-content: space-around; /* Gleichmäßiger Abstand */
+    flex-wrap: wrap; /* Zeilenumbruch bei zu vielen Elementen */
 }
 
 nav ul li {
-    margin-bottom: 15px; /* Abstand zwischen Menüpunkten */
+    margin: 5px 10px; /* Abstand zwischen den Menüpunkten */
 }
 
 nav ul li a {
     color: #fff;
     text-decoration: none;
     font-weight: bold;
-    padding: 10px 0; /* Mehr Padding für Klickbereich */
-    display: block; /* Macht den Link-Bereich anklickbar */
+    padding: 5px 0;
+    display: block;
     transition: color 0.3s ease;
 }
 
@@ -57,54 +60,48 @@ nav ul li a:hover {
     color: #ffd700;
 }
 
-/* Hauptinhalt-Bereich */
-#content {
-    margin-left: 200px; /* Platz für die Navigation lassen (muss der Breite von nav entsprechen!) */
-    flex-grow: 1; /* Nimmt den restlichen verfügbaren Platz ein */
-    padding: 20px; /* Innenabstand zum Rand des Containers */
-    max-width: calc(100% - 220px); /* Max-Breite anpassen (Gesamtbreite - nav-Breite - padding) */
-    background-color: rgba(255, 255, 255, 0.9); /* Hauptinhalt mit leichter Transparenz */
-    border-radius: 8px; /* Optional, wenn #content einen eigenen Hintergrund hat */
-    box-shadow: 0 0 10px rgba(0,0,0,0.1); /* Optionaler Schatten für den Inhaltsbereich */
+/* --- Wrapper für den Hauptinhalt --- */
+#content-wrapper {
+    /* Kein Margin oder Padding hier im Standard, wird für PC gesetzt */
+    /* background-color: rgba(255, 255, 255, 0.9); /* Kann hier oder auf main/sections sein */
+    padding-bottom: 20px; /* Optional: etwas Platz vor dem Footer */
 }
 
-/* Header-Stile - bleiben meist gleich */
+/* --- Header --- */
 header {
     background-color: rgba(51, 51, 51, 0.8);
     color: #fff;
-    padding: 1rem 0;
+    padding: 1rem 20px; /* Innenabstand mit horizontalem Wert */
     text-align: center;
-    margin-bottom: 20px; /* Abstand zum Main-Inhalt */
-    border-radius: 8px; /* Wenn #content abgerundet ist */
+    margin-bottom: 20px;
 }
 
 header h1 {
     margin: 0;
-    font-size: 2.5rem;
+    font-size: 2rem; /* Angepasst für Mobile */
 }
 
 header p {
     margin: 0;
-    font-size: 1.1rem;
+    font-size: 1rem; /* Angepasst für Mobile */
 }
 
-/* Bestehende Main- und Section-Stile (Anpassungen für das neue Layout) */
+/* --- Main-Content Bereich --- */
 main {
-    padding: 20px; /* Innenabstand um den Inhalt herum */
-    max-width: 900px; /* Hier legst du die maximale Breite fest */
-    margin: 20px auto; /* Zentriert den Block horizontal und gibt etwas vertikalen Abstand */
+    padding: 20px; /* Innenabstand für den Inhalt */
+    max-width: 900px; /* Max. Breite für Desktop (wird unten in Media Query gesetzt) */
+    margin: 20px auto; /* Zentrierung für Desktop (wird unten in Media Query gesetzt) */
     background-color: rgba(255, 255, 255, 0.9); /* Hauptinhalt mit leichter Transparenz */
-    border-radius: 8px; /* Optional: abgerundete Ecken */
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Optional: leichter Schatten */
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
+/* --- Inhalte der Sektionen --- */
 section {
     padding: 20px; /* Innenabstand für jede Sektion */
     border-bottom: 1px solid #eee;
     margin-bottom: 20px;
-    background-color: #fff; /* Jede Sektion kann hier einen eigenen weißen Hintergrund haben, oder entfernen, wenn #content genug ist */
-    border-radius: 5px; /* Optional */
-    box-shadow: 0 1px 3px rgba(0,0,0,0.05); /* Optional */
+    /* Hintergrundfarbe der Sektionen kommt von main, kann aber auch hier gesetzt werden */
 }
 
 section:last-child {
@@ -129,58 +126,70 @@ section p, section ul li {
     line-height: 1.8;
 }
 
-/* Footer-Stile - jetzt innerhalb von #content */
+/* --- Footer --- */
 footer {
     text-align: center;
     padding: 20px;
-    background-color: rgba(51, 51, 51, 0.8); /* Mit Transparenz */
+    background-color: rgba(51, 51, 51, 0.8);
     color: #fff;
     margin-top: 30px;
-    border-radius: 8px; /* Wenn #content abgerundet ist */
 }
 
-/* Media Query für kleine Bildschirme (Smartphones/Tablets) */
-@media (max-width: 768px) {
-    #container {
-        flex-direction: column; /* Elemente untereinander statt nebeneinander */
+/* --- Media Query für PC / größere Bildschirme (ab 769px Breite) --- */
+@media (min-width: 769px) {
+    /* PC: Hintergrundbild fixed */
+    body {
+        background-attachment: fixed;
     }
 
+    /* PC: Nav links fest */
     nav {
-        position: static; /* Navigation ist wieder statisch (nicht fest) */
-        width: 100%; /* Nimmt volle Breite ein */
-        height: auto; /* Höhe passt sich an Inhalt an */
-        padding: 10px 0; /* Weniger Padding */
-        box-shadow: 0 2px 5px rgba(0,0,0,0.2); /* Schatten unten */
+        width: 200px; /* Breite der festen Navigationsleiste */
+        position: fixed; /* Navigation links fest */
+        top: 0;
+        left: 0;
+        height: 100vh; /* Volle Höhe des Viewports */
+        overflow-y: auto; /* Scrollbar, wenn viele Menüpunkte */
+        box-shadow: 2px 0 5px rgba(0,0,0,0.2); /* Schatten nach rechts */
     }
 
     nav ul {
-        flex-direction: column; /* Menüpunkte untereinander */
-        text-align: center; /* Text zentrieren */
+        flex-direction: column; /* Menüpunkte untereinander auf PC */
+        justify-content: flex-start; /* Oben beginnen */
+        padding-top: 20px; /* Abstand nach oben */
     }
 
     nav ul li {
-        margin: 5px 0;
+        margin: 0 0 15px 0; /* Vertikaler Abstand, kein horizontaler */
     }
 
-    #content {
-        margin-left: 0; /* Kein Margin mehr links */
-        padding: 10px; /* Weniger Padding für den Inhalt */
-        max-width: 100%; /* Nimmt volle Breite ein */
+    nav ul li a {
+        padding: 10px 15px; /* Mehr Padding für die Links */
+        text-align: left; /* Text linksbündig */
+    }
+
+    /* PC: Inhalt rückt ein und bekommt max-Breite */
+    #content-wrapper {
+        margin-left: 200px; /* Verschiebt den Inhalt um die Breite der Navigation */
+        /* Oder nutze display: flex auf body und flex-grow auf content-wrapper */
     }
 
     header {
-        padding: 0.8rem 0;
+        padding: 1rem 20px; /* Gleichbleibendes Padding */
+        text-align: left; /* Header-Text linksbündig auf PC */
     }
 
     header h1 {
-        font-size: 1.8rem;
+        font-size: 2.5rem; /* Größerer Titel auf PC */
     }
-}
 
-/* Optional: Hintergrundbild nur für größere Bildschirme (Desktop, Tablets) */
-/* Dies überschreibt das background-image vom body für größere Bildschirme und macht es fixed */
-@media (min-width: 769px) {
-    body {
-        background-attachment: fixed; /* Für Desktop kann 'fixed' gut aussehen */
+    header p {
+        font-size: 1.1rem; /* Größere Unterzeile auf PC */
+    }
+
+    main {
+        /* max-width und margin: auto bleiben, greifen aber jetzt im Kontext von #content-wrapper */
+        max-width: 900px; /* Bleibt bei max. 900px Breite */
+        margin: 20px auto; /* Zentrierung innerhalb des verfügbaren Raums */
     }
 }
