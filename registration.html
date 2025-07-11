@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anmeldung Garagenflohmarkt</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Basic styling for the iframe container */
+        #google-form-container {
+            width: 100%;
+            max-width: 800px; /* Adjust as needed */
+            margin: 20px auto;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            padding: 20px;
+        }
+
+        #google-form-container iframe {
+            width: 100%;
+            height: 1200px; /* Adjust height as necessary for your form content */
+            border: none;
+        }
+
+        /* Specific styles for registration page to inherit global styles */
+        body {
+            background-image: url('garagenflohmarkt_background.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: scroll;
+        }
+
+        @media (min-width: 769px) {
+            body {
+                background-attachment: fixed;
+            }
+            #content-wrapper {
+                margin-left: 200px; /* Align with main content area */
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <ul>
+            <li><a href="index.html#infos">Infos</a></li>
+            <li><a href="index.html#artikel">Artikel</a></li>
+            <li><a href="index.html#adresse">Adresse & Zeiten</a></li>
+            <li><a href="index.html#kontakt">Kontakt</a></li>
+            <li><a href="registration.html">Anmeldung</a></li>
+        </ul>
+    </nav>
+
+    <div id="content-wrapper">
+        <header>
+            <h1>Anmeldung zum Garagenflohmarkt</h1>
+            <p>Melde dich hier an, um deinen Stand für den Flohmarkt zu sichern!</p>
+        </header>
+
+        <main>
+            <section id="registration-form">
+                <h2>Anmeldeformular</h2>
+                <p>Bitte fülle das untenstehende Formular vollständig aus.</p>
+                <div id="google-form-container">
+                    <iframe src="https://forms.gle/CS4vTf9a9E7DaixAA" width="640" height="1200" frameborder="0" marginheight="0" marginwidth="0">Wird geladen…</iframe>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>&copy; 2025 Dein Garagenflohmarkt. Alle Rechte vorbehalten.</p>
+        </footer>
+    </div>
+
+</body>
+</html>
