@@ -13,7 +13,7 @@ body {
     min-height: 100vh; /* Mindesthöhe für den Body */
 
     /* Hintergrundbild-Regeln - Standardmäßig für alle, aber Attachment gesteuert */
-    background-image: url('garagenflohmarkt_background.png'); /* Dein hochgeladenes Bild */
+    background-image: url('Straße_Wennebostel.jpg'); /* Dein hochgeladenes Bild */
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -154,10 +154,6 @@ footer {
 
 /* --- Media Query für PC / größere Bildschirme (ab 769px Breite) --- */
 @media (min-width: 769px) {
-    /* PC: Hintergrundbild fixed */
-    body {
-        background-attachment: fixed;
-    }
 
     /* PC: Nav links fest */
     nav {
